@@ -99,6 +99,40 @@ namespace ConsoleApp_Telekocsi
                 }
             }
 
+            // 6. feladat 
+
+            StreamWriter sw = new StreamWriter("utazasuzenetek.txt");
+
+            bool vanFuvar = false;
+
+            foreach (var igeny in igenyek)
+            {
+                foreach (var auto in autok)
+                {
+                    if (igeny.Indulas == auto.Indulas && igeny.Cel == auto.Cel)
+                    {
+                        sw.WriteLine($"{igeny.Azonosito}: Rendszám: {auto.Rendszam}, Telefonszám: {auto.Telefonszam}");
+                        vanFuvar = true;
+                        break;
+                    }
+
+                }
+
+                if ( !vanFuvar )
+                {
+                    sw.WriteLine($"{igeny.Azonosito}: Sajnos nem sikerült autót találni");
+                }
+                else
+                {
+                    vanFuvar = false;
+                }
+
+            }
+
+            sw.Close();
+
+            Console.WriteLine("\n6. feladat: utazasuzenetek.txt");
+
 
         }
     }
